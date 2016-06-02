@@ -1,5 +1,6 @@
 package ir.softernet.lib.quemars;
 
+import org.apache.log4j.Logger;
 import redis.clients.jedis.Jedis;
 
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.List;
  * Created by saman on 4/19/16.
  */
 public abstract class QuemarsConsumer extends RedisConnector implements Runnable {
+
+    private static final Logger LOGGER = Logger.getLogger(QuemarsConsumer.class);
 
     volatile boolean stopped    = false;
     volatile boolean doConsume  = true;

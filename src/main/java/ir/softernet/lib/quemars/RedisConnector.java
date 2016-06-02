@@ -1,5 +1,6 @@
 package ir.softernet.lib.quemars;
 
+import org.apache.log4j.Logger;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
@@ -7,6 +8,8 @@ import redis.clients.jedis.JedisPoolConfig;
  * Created by saman on 4/19/16.
  */
 public abstract class RedisConnector {
+
+    private static final Logger LOGGER = Logger.getLogger(RedisConnector.class);
 
     protected static final int      __TIMEOUT       = 5;
 
@@ -25,7 +28,7 @@ public abstract class RedisConnector {
 
     protected RedisConnector(QuemarsConfig config, int instancesCount) {
         final JedisPoolConfig poolConfig = new JedisPoolConfig();
-        poolConfig.setMaxTotal(instancesCount);
+        poolConfig.setMaxActive(instancesCount);
 
         this.pool       = new JedisPool(config.getIp(), config.getPort());
         this.dbIndex    = config.getDbIndex();

@@ -1,11 +1,14 @@
 package ir.softernet.lib.quemars;
 
+import org.apache.log4j.Logger;
 import redis.clients.jedis.Jedis;
 
 /**
  * Created by saman on 4/19/16.
  */
 public class QuemarsProducer extends RedisConnector {
+
+    private static final Logger LOGGER = Logger.getLogger(QuemarsProducer.class);
 
     public QuemarsProducer(QuemarsConfig config) {
         super(config);
